@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<form method="POST" action="form-handler.php">
+		<form method="POST" action="/pdo-form-handler/form-handler.php">
 			<div class="top">
 				<h3>Авторизация</h3>
 			</div>
