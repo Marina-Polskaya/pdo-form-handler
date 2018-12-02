@@ -1,21 +1,22 @@
 <?php
-class Handler {
+ class Handler {
 
-	private $connection;
-	
+ 	private $connection;
+	private $dsn = 'mysql:dbname=db_blog;host=localhost';
+	private $user = 'root';
+	private $password = '';
+	private $options = array (
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+	);
 
-	public function __construct(){
-		try {
-			$this->connection = new PDO('mysql:dbname=db_blog;host=localhost', 'root', '');
-			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (PDOException $e){
-			die('Подключение не удалось: '. $e->getMassage());
-		}
+	public function connect ()
+	{
+		$this->connection = new PDO($this->dsn, $this->user, $this->password, $this->options);
+		return $this->connection;
 	}
 
-
-	public function getLoginForm($params) {
+ 	public function getLoginForm($params) {
    		return $params['login'];
 	}
 
@@ -23,5 +24,9 @@ class Handler {
    		return $params['password'];
 	}
 }
+
+
+
+
 
 ?>
